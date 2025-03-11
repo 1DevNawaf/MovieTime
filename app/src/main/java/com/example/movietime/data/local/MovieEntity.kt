@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class MovieEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    val autoId: Int = 0,
     val id: Int,
     val background_image: String,
     val background_image_original: String,

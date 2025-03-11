@@ -4,7 +4,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieApi {
-
     @GET("list_movies.json")
     suspend fun getMovies(
         @Query("limit") limit : Int,
