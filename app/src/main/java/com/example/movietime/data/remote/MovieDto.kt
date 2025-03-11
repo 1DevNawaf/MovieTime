@@ -1,4 +1,4 @@
-package com.example.movietime.data
+package com.example.movietime.data.remote
 data class MovieDto(
     val background_image: String,
     val background_image_original: String,
