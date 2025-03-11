@@ -5,14 +5,14 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class MovieEntity(
+    @PrimaryKey
+    val id: Int,
     val background_image: String,
     val background_image_original: String,
     val date_uploaded: String,
     val date_uploaded_unix: Int,
     val description_full: String,
     val genres: List<String>,
-    @PrimaryKey
-    val id: Int,
     val imdb_code: String,
     val language: String,
     val large_cover_image: String,
