@@ -8,7 +8,7 @@ interface MovieApi {
     suspend fun getMovies(
         @Query("limit") limit : Int,
         @Query("page") page : Int
-    ) : List<MovieDto>
+    ) : MoviesPage
 
     companion object{
         const val BASE_URL = "https://movie-database-api1.p.rapidapi.com/"

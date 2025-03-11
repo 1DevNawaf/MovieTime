@@ -1,4 +1,4 @@
-package com.example.movietime.presentation
+package com.example.movietime.presentation.moviescreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

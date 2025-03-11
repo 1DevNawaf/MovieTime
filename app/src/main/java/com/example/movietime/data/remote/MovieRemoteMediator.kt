@@ -8,6 +8,7 @@ import androidx.room.withTransaction
 import com.example.movietime.data.local.MovieDatabase
 import com.example.movietime.data.local.MovieEntity
 import com.example.movietime.data.mapper.toMovieEntity
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -31,11 +32,12 @@ class MovieRemoteMediator(
                     if (lastItem == null){
                         1
                     }else{
-                        (lastItem.autoId / state.config.pageSize) + 1
+                        (lastItem.autoId!! / state.config.pageSize) + 1
                     }
                 }
             }
 
+            delay(1000L)
             val movies = movieApi.getMovies(
                 page = loadKey,
                 limit = state.config.pageSize
@@ -45,12 +47,12 @@ class MovieRemoteMediator(
                 if (loadType == LoadType.REFRESH){
                     movieDatabase.dao.clearAll()
                 }
-                val movieEntity = movies.map { it.toMovieEntity() }
+                val movieEntity = movies.data?.movies!!.map { it.toMovieEntity() }
                 movieDatabase.dao.upsertAll(movieEntity)
             }
 
             MediatorResult.Success(
-                endOfPaginationReached = movies.isEmpty()
+                endOfPaginationReached = movies.data?.movies!!.isEmpty()
             )
         }catch (e: IOException){
             MediatorResult.Error(e)

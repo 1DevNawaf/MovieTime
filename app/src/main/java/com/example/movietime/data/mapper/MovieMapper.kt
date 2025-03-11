@@ -1,10 +1,10 @@
 package com.example.movietime.data.mapper
 
 import com.example.movietime.data.local.MovieEntity
-import com.example.movietime.data.remote.MovieDto
+import com.example.movietime.data.remote.MoviesPage
 import com.example.movietime.domain.Movie
 
-fun MovieDto.toMovieEntity() : MovieEntity {
+fun MoviesPage.Data.MovieDto.toMovieEntity() : MovieEntity {
     return MovieEntity(
         id = id,
         background_image = background_image,
@@ -28,7 +28,7 @@ fun MovieDto.toMovieEntity() : MovieEntity {
         title = title,
         title_english = title_english,
         title_long = title_long,
-        torrents = torrents.map {
+        torrents = torrents?.map {
             MovieEntity.Torrent(
                 audio_channels = it.audio_channels,
                 bit_depth = it.bit_depth,
@@ -77,7 +77,7 @@ fun MovieEntity.toMovie() : Movie{
         title = title,
         title_english = title_english,
         title_long = title_long,
-        torrents = torrents.map {
+        torrents = torrents?.map {
             Movie.Torrent(
                 audio_channels = it.audio_channels,
                 bit_depth = it.bit_depth,
